@@ -5,4 +5,4 @@ Video link: https://youtu.be/79nu4eQ4wZc
 
 The code will be released after the paper is accepted.
 
-![sph_demo](gif/sph_demo.gif)
+![sph_demo](image/sph_demo.gif)
