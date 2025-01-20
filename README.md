@@ -1,6 +1,6 @@
 # SPH-planning
 Swarm Navigation Framework Based on Smoothed Particle Hydrodynamics
 
-Video link:
+Video link:https://youtu.be/79nu4eQ4wZc
 
 The code will be released after the paper is accepted.
