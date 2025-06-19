@@ -1,0 +1,152 @@
+<launch>
+    <!-- SPH Define parameters -->
+    <!-- The system is designed based on <<Collective fission behavior in swarming systems with density-based interaction>> 
+         The parameters is defined as follows. 
+         Generally speaking, increasing the kernel function radius h, the strength of density force k_den,
+         and the reference density restDensity, or decreasing the strength of repulsion force k_rep, the 
+         swarming system is more likely to maintain a single cluster, and the critical group size becomes larger.-->
+
+    <arg name="particleCount" value="15"/>      <!-- The number of particles should match the number of CPU cores available; otherwise, multithreaded parallel computation is likely to fail.-->
+    <arg name="particleInterval" value="0.5"/>  
+    <arg name="particleVisScale" value="0.25"/> 
+    <arg name="sphInitTime" value="5.0"/>      
+    <arg name="init_bias_x" value="14.0"/>         
+    <arg name="init_bias_y" value="0.0"/>         
+    <arg name="updateInterval" value="0.02"/>   
+    <arg name="h" value="10.0"/>                    <!-- kernel function radius -->
+    <arg name="mass" value="1.0"/>                  <!-- default MASS -->
+    <arg name="threshold_dist" value="0.03"/>   
+    <arg name="k_den" value="1.0"/>                 <!-- k_den -->
+    <arg name="k_rep" value="1.1"/>                 <!-- k_rep -->
+    <arg name="k_fri" value="1.8"/>                 <!-- k_fri -->
+    <arg name="k_p"   value="15.0"/>                <!-- k_p -->
+    <arg name="k_d"   value="6.5"/>                 <!-- k_d -->
+    <arg name="k_ff"  value="1.0"/>                 <!-- k_ffs -->
+    <arg name="k_force" value="1000.0"/>            <!-- k_force -->
+    <arg name="v_max" value="2.5"/>                 <!-- v_max-->
+    <arg name="a_max" value="3.5"/>                 <!-- a_max -->
+    <arg name="r_1"   value="0.06"/>                <!-- r_1 -->
+    <arg name="r_2"   value="0.2"/>                 <!-- r_2 -->
+    <arg name="planv_max" value="1.2"/>             <!-- v_max -->
+    <arg name="plana_max" value="1.5"/>             <!-- a_max -->
+    <arg name="restDensity" value="1000000.0"/>     <!-- \rho0 -->
+    <arg name="g" value="-9.8"/>                    <!-- no use -->
+    <arg name="use_pctrl" value="true"/>     
+    
+    <!-- Map  parameters-->
+    <arg name="map_size_x_" value="40.0"/>
+    <arg name="map_size_y_" value="40.0"/>
+    <arg name="map_size_z_" value=" 6.0"/>
+
+    <arg name="local_update_range_x" value="7.0"/>
+    <arg name="local_update_range_y" value="7.0"/>
+    <arg name="local_update_range_z" value="5.0"/>
+    
+    <!-- Run the sph_particles node -->
+    <node name="sph_zhang_3d" pkg="water_swarm" type="sph_zhang_3d" output="screen">
+        <param name="sph/mass"              value="$(arg mass)"/> 
+        <param name="sph/restDensity"       value="$(arg restDensity)"/>
+        <param name="sph/h"                 value="$(arg h)"/> 
+        <param name="sph/g"                 value="$(arg g)"/>
+        <param name="sph/use_pctrl"         value="$(arg use_pctrl)"/>
+        <param name="sph/particleCount"     value="$(arg particleCount)"/> 
+        <param name="sph/particleInterval"  value="$(arg particleInterval)"/>
+        <param name="sph/updateInterval"    value="$(arg updateInterval)"/>
+        <param name="sph/particleVisScale"  value="$(arg particleVisScale)"/>
+        <param name="sph/threshold_dist"    value="$(arg threshold_dist)"/>
+        <param name="sph/k_den"             value="$(arg k_den)"/> 
+        <param name="sph/k_rep"             value="$(arg k_rep)"/> 
+        <param name="sph/k_fri"             value="$(arg k_fri)"/> 
+        <param name="sph/k_p"               value="$(arg k_p)"/> 
+        <param name="sph/k_d"               value="$(arg k_d)" />
+        <param name="sph/k_ff"              value="$(arg k_ff)" />
+        <param name="sph/v_max"             value="$(arg v_max)"/>
+        <param name="sph/a_max"             value="$(arg a_max)"/>
+        <param name="sph/r_1"               value="$(arg r_1)"/>
+        <param name="sph/r_2"               value="$(arg r_2)"/>
+        <param name="sph/state_enabled"     value="false"/>
+        <param name="sph/vis_role"          value="false"/>
+        <param name="sph/init_bias_x"       value="$(arg init_bias_x)"/>
+        <param name="sph/init_bias_y"       value="$(arg init_bias_y)"/>
+    </node>    
+
+    <!-- Traj opt-->
+  <node name="swarm_planning_3d" pkg="bspline_race" type="swarm_planning_3d" output="screen">
+        <!-- Plan Manager -->
+        <param name="fsm/sphInitTime"      value="$(arg sphInitTime)" /> 
+        <param name="fsm/cloud_topic"      type="string" value="/mock_map" />
+        <param name="fsm/planInterval"     value="0.2" /> 
+        <param name="fsm/trajVisParam"     value="1.0" /> 
+        <param name="fsm/init_bias_x"      value="$(arg init_bias_x)"/>
+        <param name="fsm/init_bias_y"      value="$(arg init_bias_y)"/>
+
+        <!-- SDF Map -->
+        <param name="sdf_map/resolution"   value="0.1" /> 
+        <param name="sdf_map/map_size_x"   value="$(arg map_size_x_)" /> 
+        <param name="sdf_map/map_size_y"   value="$(arg map_size_y_)" /> 
+        <param name="sdf_map/map_size_z"   value="$(arg map_size_z_)" /> 
+
+        <param name="sdf_map/local_update_range_x"  value="$(arg local_update_range_x)" /> 
+        <param name="sdf_map/local_update_range_y"  value="$(arg local_update_range_y)" /> 
+        <param name="sdf_map/local_update_range_z"  value="$(arg local_update_range_z)" /> 
+        
+        <param name="sdf_map/obstacles_inflation"     value="0.099" /> 
+        <param name="sdf_map/local_bound_inflate"    value="0.0"/>
+        <param name="sdf_map/local_map_margin" value="50"/>
+        <param name="sdf_map/ground_height"        value="-0.01"/>
+        <!-- depth filter -->
+        <param name="sdf_map/use_depth_filter" value="true"/>
+        <param name="sdf_map/depth_filter_tolerance" value="0.15"/>
+        <param name="sdf_map/depth_filter_maxdist"   value="5.0"/>
+        <param name="sdf_map/depth_filter_mindist"   value="0.2"/>
+        <param name="sdf_map/depth_filter_margin"    value="2"/>
+        <param name="sdf_map/k_depth_scaling_factor" value="1000.0"/>
+        <param name="sdf_map/skip_pixel" value="2"/>
+        <!-- local fusion -->
+        <param name="sdf_map/p_hit"  value="0.65"/>
+        <param name="sdf_map/p_miss" value="0.35"/>
+        <param name="sdf_map/p_min"  value="0.12"/>
+        <param name="sdf_map/p_max"  value="0.90"/>
+        <param name="sdf_map/p_occ"  value="0.80"/>
+        <param name="sdf_map/min_ray_length" value="0.5"/>
+        <param name="sdf_map/max_ray_length" value="4.5"/>
+        <param name="sdf_map/esdf_slice_height" value="0.3"/>
+        <param name="sdf_map/visualization_truncate_height"   value="2.49"/>
+        <param name="sdf_map/virtual_ceil_height"   value="2.5"/>
+        <param name="sdf_map/show_occ_time"  value="false"/>
+        <param name="sdf_map/show_esdf_time" value="false"/>
+        <param name="sdf_map/pose_type"     value="2"/>  
+        <param name="sdf_map/frame_id"      value="world"/>
+        <!-- geometric path searching -->
+        <param name="astar/lambda_heu" value="10.0" type="double"/>
+        <param name="astar/resolution_astar" value="0.1" type="double"/>
+        <param name="astar/time_resolution" value="0.8" type="double"/>
+        <param name="astar/margin" value="0.1" type="double"/>
+        <param name="astar/allocate_num" value="1000000" type="int"/>
+        <!-- bspline opt -->
+        <param name="planning/traj_order" value="3"/>
+        <param name="planning/dimension" value="3" />
+        <param name="planning/TrajSampleRate" value="50" />
+        <param name="planning/max_vel" value="$(arg planv_max)" />
+        <param name="planning/max_acc" value="$(arg plana_max)" />
+        <param name="planning/lambda1" value="10.0" />
+        <param name="planning/lambda2" value="0.0001" />
+        <param name="planning/lambda3" value="5.0" />
+        <param name="planning/dist_p" value="0.5" />
+        <param name="planning/safe_distance" value="0.4" />
+        <param name="planning/k_force" value="$(arg k_force)" />
+        <param name="planning/planning/opt_maxeval" value="200" />
+        <param name="planning/planning/opt_maxtime" value="0.02" />
+    </node>
+
+    <node pkg="map_generator" type="local_sensing" name="map_generator" output="screen">
+        <param name="sdf_map/resolution" value="0.1" />
+        <param name="sdf_map/map_size_x"   value="$(arg map_size_x_)" /> 
+        <param name="sdf_map/map_size_y"   value="$(arg map_size_y_)" /> 
+        <param name="sdf_map/map_size_z"   value="$(arg map_size_z_)" /> 
+        <param name="sdf_map/local_update_range_x"  value="$(arg local_update_range_x)" /> 
+        <param name="sdf_map/local_update_range_y"  value="$(arg local_update_range_y)" /> 
+        <param name="sdf_map/local_update_range_z"  value="$(arg local_update_range_z)" /> 
+    </node>
+    <!-- <node pkg="water_swarm" type="sph_vis" name="sph_vis_node" output="screen"/> -->
+</launch>

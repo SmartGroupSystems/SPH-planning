@@ -1,0 +1,6 @@
+uav_simulator/Utils/uav_server
+/home/uav/SPH-planning/devel/.private/uav_server/cmake.lock /home/uav/SPH-planning/devel/./cmake.lock
+/home/uav/SPH-planning/devel/.private/uav_server/lib/pkgconfig/uav_server.pc /home/uav/SPH-planning/devel/lib/pkgconfig/uav_server.pc
+/home/uav/SPH-planning/devel/.private/uav_server/lib/uav_server/uav_server /home/uav/SPH-planning/devel/lib/uav_server/uav_server
+/home/uav/SPH-planning/devel/.private/uav_server/share/uav_server/cmake/uav_serverConfig.cmake /home/uav/SPH-planning/devel/share/uav_server/cmake/uav_serverConfig.cmake
+/home/uav/SPH-planning/devel/.private/uav_server/share/uav_server/cmake/uav_serverConfig-version.cmake /home/uav/SPH-planning/devel/share/uav_server/cmake/uav_serverConfig-version.cmake

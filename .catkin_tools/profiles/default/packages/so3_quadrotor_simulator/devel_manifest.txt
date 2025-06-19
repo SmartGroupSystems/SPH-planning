@@ -1,0 +1,7 @@
+uav_simulator/so3_quadrotor_simulator
+/home/uav/SPH-planning/devel/.private/so3_quadrotor_simulator/cmake.lock /home/uav/SPH-planning/devel/./cmake.lock
+/home/uav/SPH-planning/devel/.private/so3_quadrotor_simulator/lib/libquadrotor_dynamics.so /home/uav/SPH-planning/devel/lib/libquadrotor_dynamics.so
+/home/uav/SPH-planning/devel/.private/so3_quadrotor_simulator/lib/so3_quadrotor_simulator/quadrotor_simulator_so3 /home/uav/SPH-planning/devel/lib/so3_quadrotor_simulator/quadrotor_simulator_so3
+/home/uav/SPH-planning/devel/.private/so3_quadrotor_simulator/lib/pkgconfig/so3_quadrotor_simulator.pc /home/uav/SPH-planning/devel/lib/pkgconfig/so3_quadrotor_simulator.pc
+/home/uav/SPH-planning/devel/.private/so3_quadrotor_simulator/share/so3_quadrotor_simulator/cmake/so3_quadrotor_simulatorConfig.cmake /home/uav/SPH-planning/devel/share/so3_quadrotor_simulator/cmake/so3_quadrotor_simulatorConfig.cmake
+/home/uav/SPH-planning/devel/.private/so3_quadrotor_simulator/share/so3_quadrotor_simulator/cmake/so3_quadrotor_simulatorConfig-version.cmake /home/uav/SPH-planning/devel/share/so3_quadrotor_simulator/cmake/so3_quadrotor_simulatorConfig-version.cmake

@@ -1,0 +1,31 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/uav/water_swarm/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/uav/water_swarm/src/bspline_traj/include/**",
+        "/home/uav/water_swarm/src/common_msgs/include/**",
+        "/home/uav/water_swarm/src/uav_simulator/dynamic_map_generator/include/**",
+        "/home/uav/water_swarm/src/uav_simulator/Utils/multi_map_server/include/**",
+        "/home/uav/water_swarm/src/uav_simulator/Utils/pose_utils/include/**",
+        "/home/uav/water_swarm/src/uav_simulator/Utils/quadrotor_msgs/include/**",
+        "/home/uav/water_swarm/src/uav_simulator/so3_control/include/**",
+        "/home/uav/water_swarm/src/uav_simulator/so3_quadrotor_simulator/include/**",
+        "/home/uav/water_swarm/src/uav_simulator/Utils/uav_utils/include/**",
+        "/home/uav/water_swarm/src/water_swarm/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

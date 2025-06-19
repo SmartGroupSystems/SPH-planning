@@ -1,0 +1,27 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "${workspaceFolder}/**",
+        "/home/uav/water_swarm/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/uav/water_swarm/src/bspline_traj/include/**",
+        "/home/uav/water_swarm/src/common_msgs/include/**",
+        "/home/uav/water_swarm/src/path_searching/include/**",
+        "/home/uav/water_swarm/src/plan_env/include/**",
+        "/home/uav/water_swarm/src/water_swarm/include/**",
+        "/home/uav/water_swarm/src/uav_simulator/include/**"
+      ],
+      "name": "linux-gcc-x64",
+      "intelliSenseMode": "linux-gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "${default}",
+      "cppStandard": "${default}"
+    }
+  ],
+  "version": 4
+}
