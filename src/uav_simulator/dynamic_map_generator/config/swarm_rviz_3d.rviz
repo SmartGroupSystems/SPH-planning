@@ -976,18 +976,6 @@ Visualization Manager:
     - Class: rviz/PublishPoint
       Single click: true
       Topic: /clicked_point
-    - Class: rviz_plugins/GameLikeInput
-      RangeX_max: 4
-      RangeX_min: -4
-      RangeY_max: 2.5
-      RangeY_min: -2.5
-      RangeZ_max: 1.70000005
-      RangeZ_min: 0.800000012
-      TopicPoint: point_list
-      TopicSelect: select_list
-      TopicSwarm: swarm
-    - Class: rviz_plugins/Goal3DTool
-      Topic: goal
     - Class: rviz/MoveCamera
   Value: true
   Views:
