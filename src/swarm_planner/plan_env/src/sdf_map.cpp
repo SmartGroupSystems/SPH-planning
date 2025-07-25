@@ -1056,8 +1056,8 @@ void SDFMap::updateESDFCallback(const ros::TimerEvent& /*event*/) {
   md_.max_esdf_time_ = max(md_.max_esdf_time_, (t2 - t1).toSec());
 
   if (mp_.show_esdf_time_)
-    // ROS_WARN("ESDF: cur t = %lf, avg t = %lf, max t = %lf", (t2 - t1).toSec(),
-    //          md_.esdf_time_ / md_.update_num_, md_.max_esdf_time_);
+    ROS_WARN("ESDF: cur t = %lf, avg t = %lf, max t = %lf", (t2 - t1).toSec(),
+             md_.esdf_time_ / md_.update_num_, md_.max_esdf_time_);
 
   md_.esdf_need_update_ = false;
 }
